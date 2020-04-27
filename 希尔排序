@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include"sort.h"
+void InsertionSort(int*a,int size){
+    int *a4;
+    a4=(int*)malloc(size*sizeof(int));
+    for (int i=0; i<size; i++) {
+        a4[i]=0;
+    }
+    for (int i=0; i<size; i++) {
+        a4[i]=a[i];
+    }
+    int i,j,tmp;//优化后的插入排序
+    for (i=1; i<size; i++) {
+        tmp=a4[i];
+        for (j=i-1; j>=0 && tmp<a4[j]; j--) {
+            a4[j+1]=a4[j];
+        }
+        a4[j+1]=tmp;
+    }
+//    for (int i=1; i<size; i++) {
+//        for (int j=i-1; j>=0; j--) {
+//            int min=0;
+//            if (a3[j+1]<a3[j]) {
+//                min=a3[j+1];
+//                a3[j+1]=a3[j];
+//                a3[j]=min;
+//            }
+//        }
+//    }
+//    printf("Result of Insertionsort =\n");
+//    for (int i=0; i<size; i++) {
+//        printf("%d ",a3[i]);
+//    }printf("\n");
+    free(a4);
+}
