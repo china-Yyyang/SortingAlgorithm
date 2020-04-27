@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#include"sort.h"
+
+int* createarray(void){
+    static int *a;
+    a=(int*)malloc(size*sizeof(int));
+    for (int i=0; i<size; i++) {
+        a[i]=0;
+    }
+//    static int a[10];
+    srand((unsigned)time(NULL));
+    for (int i=0; i<size; i++) {
+        a[i]=rand();
+    }
+    return a;
+}
