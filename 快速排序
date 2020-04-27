@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include"sort.h"
+void swap(int *a,int *b){
+    int tmp;
+    tmp=*a;
+    *a=*b;
+    *b=tmp;
+}
+
+
+void QuickSort(int *arr,int low,int high){
+    int i=low;
+    int j=high;
+    int key=arr[low];
+    if (low>=high) {
+        return;
+    }
+    
+    while (low<high) {
+        while(low<high && key<=arr[high]){
+            --high;
+        }
+        if (key>arr[high]) {
+            swap(&arr[low], &arr[high]);
+            ++low;
+        }
+        while (low<high && key>=arr[low]) {
+            ++low;
+        }
+        if (key<arr[low]) {
+            swap(&arr[low], &arr[high]);
+            --high;
+        }
+    }
+    QuickSort(arr, i, low-1);
+    QuickSort(arr, low+1, j);
+}
