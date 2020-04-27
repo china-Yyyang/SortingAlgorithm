@@ -1,0 +1,127 @@
+//  Created by KEVIN on 2020/4/18.
+//  Copyright © 2020 kevin. All rights reserved.
+//
+
+//排序算法
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include"sort.h"
+int size;
+int main(){
+    int *A;
+    printf("size=");
+    scanf("%d",&size);
+//    A=(int*)malloc(size*sizeof(int));
+//    for (int i=0; i<size; i++) {
+//        A[i]=0;
+//    }
+    //产生含10000个随机数的数组
+    A=createarray();
+//    srand((unsigned)time(NULL));
+//    for (int i=0; i<size; i++) {
+//        A[i]=rand();
+//    }
+//    printf("A =%p\n",A);
+    //将产生的随机数组赋值给数组A(无意义）
+//    for (int i=0; i<size; i++) {
+//        A[i]=a[i];
+//    }
+//    printf("Ranmdom array=\n");
+//    for (int i=0; i<size; i++) {
+//        printf("%d ",A[i]);
+//    }printf("\n");
+    
+    //计时
+    clock_t start_t,finish_t; double total_t=0.0;
+    //Bubble Sort计时
+    start_t=clock();
+    BubbleSort(A,size);
+    finish_t=clock();
+    total_t=(double)(finish_t - start_t) / CLOCKS_PER_SEC;
+    printf("BubbleSort CPU占用总时间=%lfs\n",total_t);
+    printf("-----------------\n");
+    //Bubble Sort/swap计时
+    start_t=clock();
+    BubbleSortswap(A, size);
+    finish_t=clock();
+    total_t=(double)(finish_t - start_t) / CLOCKS_PER_SEC;
+    printf("BubbleSortswap CPU占用总时间=%lfs\n",total_t);
+    printf("-----------------\n");
+    //Selection Sort计时
+    start_t=clock();
+    SelectionSort(A,size);
+    finish_t=clock();
+    total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
+    printf("SelectionSort CPU占用总时间=%lfs\n",total_t);
+    printf("-----------------\n");
+    //SelectionSort2计时
+    start_t=clock();
+    SelectionSort2(A,size);
+    finish_t=clock();
+    total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
+    printf("SelectionSort2 CPU占用总时间=%lfs\n",total_t);
+    printf("-----------------\n");
+    //Insertion Sort计时
+    start_t=clock();
+    InsertionSort(A,size);
+    finish_t=clock();
+    total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
+    printf("InsertionSort CPU占用总时间=%lfs\n",total_t);
+    printf("-----------------\n");
+    //Shell Sort计时
+    start_t=clock();
+    ShellSort(A,size);
+    finish_t=clock();
+    total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
+    printf("ShellSort CPU占用总时间=%lfs\n",total_t);
+    printf("-----------------\n");
+    //Shell Sort2计时
+    start_t=clock();
+    ShellSort2(A,size);
+    finish_t=clock();
+    total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
+    printf("ShellSort2 CPU占用总时间=%lfs\n",total_t);
+    printf("-----------------\n");
+    //Quick Sort计时
+    int *arr;
+    arr=(int*)malloc(size*sizeof(int));
+    for (int i=0; i<size; i++) {
+        arr[i]=A[i];
+    }
+    start_t=clock();
+    QuickSort(arr, 0, size-1);
+    finish_t=clock();
+    total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
+    printf("QuickSort CPU占用总时间=%lfs\n",total_t);
+//    for (int i=0; i<size; i++) {
+//        printf("%d ",arr[i]);
+//    }printf("\n");
+    free(arr);
+    printf("-----------------\n");
+    //Merge Sort计时
+    int *arr2;
+    arr2=(int*)malloc(size*sizeof(int));
+    for (int i=0; i<size; i++) {
+        arr2[i]=A[i];
+    }
+    int *temp = (int*)malloc(sizeof(int)*size);
+    start_t=clock();
+    MergeSort(arr,0,size-1,temp);
+    finish_t=clock();
+    total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
+    printf("MergeSort CPU占用总时间=%lfs\n",total_t);
+//    for (int i=0; i<size; i++) {
+//        printf("%d ",arr[i]);
+//    }printf("\n");
+    free(temp);
+    free(arr2);
+    printf("-----------------\n");
+    
+//    for (int i=0; i<size; i++) {
+//        printf("%d ",A[i]);
+//    }printf("\n");
+//
+    free(A);
+    return 0;
+}
